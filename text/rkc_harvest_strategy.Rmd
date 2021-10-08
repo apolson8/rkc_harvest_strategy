@@ -1,5 +1,5 @@
 ---
-title: "Recommended Harvest Strategy for Southeast Alaska Red King Crab (*Paralithodes camchaticus*)"
+title: "Recommended Harvest Strategy for Southeast Alaska Red King Crab (*Paralithodes camchaticus*) and Blue King Crab (*P. platypus*) Commercial and Personal Use Fisheries"
 author: "Southeast Shellfish Team"
 date: "`r format(Sys.Date(), '%m/%d/%Y')`"
 output: #pdf_document
@@ -17,14 +17,66 @@ opts_chunk$set(fig.width = 6, fig.height = 12, fig.pos = "H", echo = FALSE, warn
 ```
 
 #Background
-Management of the commercial red king crab fishery is based on the Southeast Alaska Red King Crab Management Plan (5 AAC 34.113) and policies that establishes a season that avoid sensitive life history stages of reproduction including mating and molting (November–January), restricting harvest to males only with a minimum legal-size limit of 7 inches carapace width (CW), gear restrictions, limit participation, and set annual guideline harvest levels (GHLs) based on appropriate harvest rates and results of an annual stock assessment survey. Harvest of king crab regardless of sex or size infected with parasitic barnacle species *Briarosaccus auratum* (which only infects golden king crab) and *B. regalis* (which only infects red and blue king crab) is allowed because these parasites hinder reproduction and suppress growth of king crab (Noever et al. 2016).
+Red king crab (*Paralithodes camtschaticus*) are taken primarily in the protected bays, inlets, and adjacent shorelines in Southeast Alaska north of Petersburg; few red king crab are caught from the southern portion of Southeast. Red king crab generally inhabit depths less than 200 fathoms. Historically, important red king crab fishing grounds have included Gambier Bay, Pybus Bay, Seymour Canal, the Juneau area, Lynn Canal, Holkham Bay, Excursion Inlet, and Peril Strait. Blue king crab (*P. platypus*) may be taken only during the open fisheries for red and golden king crab (*Lithodes aequispinus*) and Tanner crab (*Chionoecetes bairdi*). Small quantities of blue king crab are harvested incidentally during those fisheries (Messmer et al. 2021).
+
+Management of the commercial red king crab fishery is based on the Southeast Alaska Red King Crab Management Plan (5 AAC 34.113). This management plan was designed to be consistent with the board’s policy on “King and Tanner Crab Resource Management”. It establishes a November– January season that avoids sensitive life history stages of reproduction including mating and molting, restricts harvest to males only with a minimum legal-size limit of 7 inches carapace width, and establishes gear restrictions and annual guideline harvest levels (GHLs) based on appropriate harvest rates and annual stock assessment surveys. Harvest of red and blue king crab, regardless of their sex or size, infected with parasitic barnacle species Briarosaccus regalis is allowed because these parasites hinder reproduction and suppress growth of king crab (Noever et al. 2016).  
+
+Within Section 11-A, management of the red and blue king crab personal use fishery is based on the Section 11-A Red and Blue King Crab Management and Allocation Plan (5 AAC 34.111), which allocates harvest between the commercial and personal use fishery at 40% and 60% respectively. The plan also allocates the GHL between winter and summer seasons at 10% and 50% respectively to provide greater opportunity for the public. The personal use fishery requires harvest permits for Section 11-A and for the remainder of the region to document harvest and effort to help manage the fishery. The regionwide permit began in 2018 and is required for all king crab species (red, blue, and golden), whereas Section 11-A is required only for red and blue king crab (Messmer et al. 2021). 
+
 
 #Purpose
-The purpose of this report is to provide the basis for a recommended update to the Southeast Alaska Red King Crab Management Plan 5 AAC 34.113.
+The purpose of this document is to provide the basis for a recommended update to the Southeast Red and Blue King Crab harvest strategy 5 ACC 34.080 and 5 ACC 77.664 and to lay the framework for a consistent and transparent approach for management decisions. We provide a brief history of the biology and stock assessment, fishery management goals and objectives, and recommended harvest strategy. 
 
-#Management Goals and Objectives
+#Biology and Stock Assessment
+Life history of red king crab is better understood than other Lithodid species but remains incomplete (Donaldson 2005). Adult females brood thousands of embryos. When the embryos are fully developed, they hatch as zoea (swimming larvae), but are susceptible to the movements of tides and currents. After feeding on plant and animal plankton for several months and undergoing several body changes with each molt, the larvae settle to the ocean bottom and molt into megalopa (nonswimming larvae). Juveniles molt many times in their first few years, then less frequently until they reach sexual maturity (ADF&G 2021). Adult and older juveniles occur on a variety of substrates including rock and gravel, mud, sand, shell hash, and mixtures of these types. Red king crab are sexually mature at 5 to 6 years of age (O’Clair 1998). Adult females must molt in order to mate but males do not. Adult males often skip a molt and keep the same shell for one or two years. Adult red king crab exhibit near shore to offshore (or shallow to deep) and back, annual migrations. They come to shallow water in late winter and by spring the female's embryos hatch. Adult females and some adult males molt and mate before they start their offshore feeding migration to deeper waters. Adult crabs tend to segregate by sex off the mating-molting grounds. Adult male red king crab have been known to migrate long distances, moving at times as fast as a mile per day (ADF&G 2021).
+Management of red king crab fisheries in Southeast Alaska is abundance-based and requires annual surveys to assess stock size (Stratman et al. 2019). Stock assessment utilizes several types of data: commercial harvest, personal use harvest, catch per unit effort (CPUE), and length/weight relationships from surveys. These data, along with estimates of growth and natural mortality, are used as input into a 3-stage catch-survey model (CSA model) to determine regional biomass estimates of mature and legal red king crab, that along with exploitation rates, are used to determine harvestable surplus levels for the commercial and personal use fisheries (Palof and Stratman 2021).
 
-##Harvest Strategy Revision Need
+Outside Section 11-A, red and blue king crab personal use fisheries are managed by size, sex, season, and a bag limit; there are no allocations specified in regulation and no GHLs are established. However, stock assessment information is used to guide decisions on closing areas to personal use fishing and to establish personal use bag and possession limits.
+The department has conducted surveys of red king crab abundance in Southeast Alaska since 1979. The surveys provides indices of crab abundance by sex and recruit class in terms of crab per pot. The surveys occur in areas of high red king crab harvest. Significant improvements, resulting in successive decreases in the coefficient of variation (CV; a measure of variability) of CPUE data, have been achieved over the 30-year survey time series. These include a change from fixed to random pot locations and stratification of survey areas in 1986; a gradual shift from square to cone pots over the period 1995–1999 (Zhou and Shirley 1997d); re-stratification of the survey to redefine strata boundaries based upon the CPUE of legal, sublegal, and female red king crab in 2005 (Clark 2008); and most recently, an increase in the number of pots set in each surveyed area to improve the precision of survey area estimates. A detailed timeline and methods of survey development is outlined in Clark (2008) and Clark et al. (2003).
+
+Due to industry concerns about the red king crab stock assessment program, the department initiated an external review in 2005 (Quinn et al. 2006) and several suggestions for improvements were made, including delaying the start date of the survey to avoid non-feeding molting crab, re-stratifying the survey design for more precise pot placement (Clark 2008), comparing mark-recapture abundance estimates to the CSA (Palof and Stratman 2021), implementing a tagging study to help determine molt increments and movements, deploying temperature loggers on each pot, and assessing clutch fullness each year in each bay (Stratman et al. 2019). Even with these improvements, because of continued industry concerns, the department and industry cooperatively operated a project from 2010–2018 to independently estimate red king crab abundances using mark–recapture methods.
+
+#Harvest Strategy Goals
+The primary goal  of the proposed Southeast red king crab harvest strategy is to transition from a fishery opening decision based on an economic threshold [5 AAC 34.113 (c)] to a biological threshold using historical mature male abundance estimates from survey data (1979–2019), which will rely on setting biological reference points. Secondary goals are to recommend a regionwide harvest strategy that improves and stabilizes fishery performance using transparent and repeatable metrics from long term baseline survey data; maintain historical size and age compositions to maintain long-term reproductive viability; minimize handling and unnecessary mortality of non-legal red king crab and non-target species; and reduce dependency on annual recruitment. 
+Harvest strategies have been implemented for king crab fisheries in other areas of Alaska to improve fisheries management and sustainability. These harvest strategies are comprised of biological, fishery dependent and independent reference points (i.e., mature male biomass, CPUE, annual recruitment, etc.) that are used in recommending the total allowable catch (TAC) or GHL for a given management area and season (Daly et al. 2019; Daly and Jackson 2020; Siddeek et al. 2020).
+
+#Harvest Strategy Scenarios
+We developed and compared two harvest policy scenarios that were derived from the *Saint Matthew Island Section blue king crab harvest strategy* [5 AAC 34.917] and *Aleutian Islands golden king crab* [5 AAC 34.612] (Daly et al. 2019) and adapted to reflect the spatial stock structure of red and blue king crab in Southeast Alaska. Each harvest policy scenario has three elements: 1. a threshold for opening or closing the directed fishery and establishing bag and possession limits for the regionwide personal use fishery, 2. an exploitation rate on mature and legal male abundance, and 3. a maximum exploitation rate on legal male abundance. For all scenarios, the directed fishery is prohibited, and bag and possession limits reduced in the regionwide personal use fishery if $\frac{MMA}{MMA_{AVE}}$ or if $\frac{LMA}{LMA_{AVE}} <50\%$, dependent on the scenario. Exploitation rates increase linearly based on the ratio of the current year $MMA$ or $LMA$ relative to their respective long-term averages for the period of 1979–2019 (Figure 1). The 1979–2019 period was chosen because it uses all of the survey data and incorporates more contrasting high and low years of abundance than the current long-term baseline used in the stock assessment (1993–2007). The exploitation rate is subsequently capped when $\frac{MMA}{MMA_{AVE}} ≥ 1$. The maximum exploitation rate on legal males utilizing an MMA harvest strategy provides additional protection against over harvesting legal males in years when mature male abundance is high relative to the entire size range of mature male abundance.  Both scenarios were retrospectively applied to MMA and LMA estimates and examined for trade-offs compared to historical management decisions from 2000–2021. 
+
+##Scenario A
+The commercial fishery may open under the following conditions **1.** and **2.** and preseason survey estimate of $MMA$ under the following conditions and illustrated in Figure 2: 
+
+  **1.** when $MMA$ is greater than 50% but less than the 100% of $MMA_{1979–2019}$, the number of legal males available for harvest or total allowable catch (TAC) will be no more than Eq. 1 or 25% of the preseason survey estimate of legal abundance, whichever is less.
+
+\begin{equation}
+TAC_{max}= 0.1 \times {(\frac{MMA}{MMA_{1979-2019}})\times MMA_{regionwide}}
+\tag{1}
+\end{equation}
+
+  **2.** when $MMA$ is equal to or greater than $MMA_{1979-2019}$ the number of legal males available for harvest or TAC available for harvest will be no more than 10 percent of the preseason survey estimate of $MMA$ or 25% of the preseason survey estimate of legal abundance, whichever is less. 
+  
+##Scenario B
+The commercial fishery may open under the following conditions **1.** and **2.** and preseason survey estimate of $LMA$ under the following conditions and illustrated in Figure 2: 
+
+  **1.**when $LMA$ is greater than 50% but less than 100% of $LMA_{1979–2019}$, the number of legal males available for harvest or total allowable catch (TAC) will be no more than Eq. 2.
+  
+\begin{equation}
+TAC_{max}= 0.1 \times {(\frac{LMA}{LMA_{1979-2019}})\times LMA_{regionwide}}
+\tag{2}
+\end{equation}
+
+  **2.** when $LMA$ is equal to or greater than $LMA_{1979-2019}$ the number of legal males available for harvest or TAC available for harvest will be no more than 10 percent of the preseason survey estimate of $LMA$.
+
+#Results
+Both harvest scenarios (A and B) were applied retrospectively from 2000–2021 and compared to historical harvest rates and TACs (Table 1).  The results of this analysis showed that both scenarios had a higher maximum harvest rate and associated TAC from 2000–2003 compared to historical management decisions. From 2004–2021 both scenarios had lower maximum harvest rates and TACs, however, they showed potential for increased fishing opportunity where opportunity increased by 1 for scenario A and increased by 4 for scenario B compared to historical management decisions. It is important to note that the maximum harvest rate of $LMA$ as described in scenario A was never employed suggesting that this harvest rate on $LMA$ needs to be adjusted to reflect Southeast stocks. 
+
+#Management Considerations and Future Recommendations
+The recommended harvest strategies scenarios (A and B) reflect options to update the current harvest strategy from an economic threshold to a biological one and sets a maximum harvest rate based on the level of $MMA$ or $LMA$. The current and historical management process has resulted in inconsistently determined harvest rates used to calculate TAC and trigger a fishery opening, and it has provided for less fishing opportunity in the commercial and personal use fisheries. The scenario A harvest strategy is the most widely applied harvest strategy for Alaska crab stocks in the Bering Sea and Aleutian Islands that utilizes $MMA$ to set harvest rates with a protection buffer to not overharvest legal males if $MMA$ is high relative to the entire size range of $MMA$. The maximum harvest rate on legal males needs to be adapted to reflect Southeast stocks such as, through a long-term percent difference between $MMA$ and $LMA$, a revised constant static number, or the cumulative sum of the percent differences for surveyed areas. 
+
+Overall, both scenarios set a maximum TAC at the regionwide level and management would maintain flexibility in setting TACs at each area respectively. Stock health scores from survey data will be used to define and set TACs for fishery areas. Management of the fishery in recent years (2011 and 2017) has resulted in areas being open approximately 24 hours which increases difficulty for managing to a respective TAC. Scenarios A and B propose lower maximum TACs that are significantly less than the most recent fisheries and implementing new harvest control rules (HCRs) to make this achievable will be considered. Industry has requested and proposed increased opportunity at lower TAC levels utilizing HCRs that include one or combination of equal quota share and trip-limits. In order to not exceed fishery area TACs, every effort will be made to actively manage these areas inseason. 
+
+This harvest strategy may be amended in future iterations as we gain additional information and user input. This harvest strategy is a first step to increase transparency regarding management metrics utilized for inseason and postseason decisions. 
+
 
 #Current Harvest Strategy
 
@@ -93,3 +145,16 @@ PU management plan stipulates red and blue whereas commercial stipulates red kin
 
 
 #References
+
+#Figures
+
+```{r, fig.cap = "1978-2021 Mature (solid black) and legal male (dashed black) abundance estimates with associated reference points from the Southeast Alaska red king crab stock assessment survey CSA model. Reference points include: Target ($MMA_{1979-2019}$, solid green line), Trigger (50% of $MMA_{1979-2019}$, dashed green line), Target ($LMA_{1979-2019}$, solid orange line), and Trigger (50% of $LMA_{1979-2019}$, dashed orange line).", out.width= "500px"}
+
+knitr::include_graphics("../figures/2021/rkc_strategies.png")
+```
+
+```{r, fig.cap = "Exploitation rates on mature male abundnace ($MMA$) based on the current year relative to $MMA_{AVE}$ which is the mean value of $MMA$ for the period of 1979-2019.", out.width= "500px"}
+
+knitr::include_graphics("../figures/2021/rkc_hcrs.png")
+```
+
