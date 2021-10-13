@@ -55,10 +55,10 @@ h_strat <- data.frame(mmb = c(0.5, 0.5, 1.0, 1.5,
                                     0, 0.05, 0.09, 0.09,
                                     0, 0.05, 0.1, 0.1,
                                     0, 0.025, 0.09, 0.09),
-                      scenario = c("HCR 1.1", "HCR 1.1", "HCR 1.1", "HCR 1.1", 
-                                   "HCR 1.2", "HCR 1.2", "HCR 1.2", "HCR 1.2",
-                                   "HCR 1.3", "HCR 1.3", "HCR 1.3", "HCR 1.3",
-                                   "HCR 2.1", "HCR 2.1", "HCR 2.1", "HCR 2.1")
+                      scenario = c("Scenario 1.1", "Scenario 1.1", "Scenario 1.1", "Scenario 1.1", 
+                                   "Scenario 1.2", "Scenario 1.2", "Scenario 1.2", "Scenario 1.2",
+                                   "Scenario 1.3", "Scenario 1.3", "Scenario 1.3", "Scenario 1.3",
+                                   "Scenario 2.1", "Scenario 2.1", "Scenario 2.1", "Scenario 2.1")
 )
 
 print(h_strat)
@@ -81,7 +81,7 @@ h_strat %>%
                      expand = c(0,0)) +
   xlab(bquote(MMB/MMB[AVG])) +
   ylab("Exploitation rate on MMB") +
-  theme(legend.position = c(0.9, 0.85), #"none" to remove legend
+  theme(legend.position = c(0.8, 0.85), #"none" to remove legend
         legend.title = element_blank()) -> fig1
 
 ggsave(paste0('./figures/', cur_yr,'/rkc_hcrs.png'), fig1,  
