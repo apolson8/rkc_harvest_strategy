@@ -78,12 +78,6 @@ Overall, both scenarios set a maximum TAC at the regionwide level and management
 This harvest strategy may be amended in future iterations as we gain additional information and user input. This harvest strategy is a first step to increase transparency regarding management metrics utilized for inseason and postseason decisions. 
 
 
-#Current Harvest Strategy
-
-The current harvest strategy utilizes an economic threshold....
-
-PU management plan stipulates red and blue whereas commercial stipulates red king crab only
-
 ##Commercial Fishery
 
 **5 AAC 34.113. Southeast Alaska Red King Crab Management Plan**
@@ -157,4 +151,7 @@ knitr::include_graphics("../figures/2021/rkc_strategies.png")
 
 knitr::include_graphics("../figures/2021/rkc_hcrs.png")
 ```
+
+
+
 
