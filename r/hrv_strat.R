@@ -1,6 +1,6 @@
 #Southeast RKC/BKC Harvest Strategy
 #Andrew Olson 9-15-21
-
+test
 library(tidyverse)
 library(lubridate)
 library(readxl)
