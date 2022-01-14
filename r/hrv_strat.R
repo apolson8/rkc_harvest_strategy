@@ -1,6 +1,6 @@
 #Southeast RKC/BKC Harvest Strategy
 #Andrew Olson 9-15-21
-test
+
 library(tidyverse)
 library(lubridate)
 library(readxl)
@@ -26,10 +26,10 @@ dir.create(output_path)
 ##THEMES FOR GRAPHS ---------
 loadfonts(device="win")
 windowsFonts(Times=windowsFont("TT Times New Roman"))
-theme_set(theme_bw(base_size=14,base_family='seriff') + 
+theme_set(theme_bw(base_size=16,base_family='seriff') + 
             theme(panel.grid.major = element_blank(), 
                   panel.grid.minor = element_blank(),
-                  axis.text = element_text(size = 11),
+                  axis.text = element_text(size = 14),
                   axis.title = element_text(face = "bold")))
 
 #Load Data------
@@ -65,7 +65,8 @@ print(h_strat)
 
 #Visualize harvest model
 h_strat %>%
-  ggplot(aes(mmb, harv_rate, color = scenario)) +
+  filter(scenario == "Scenario 1.3") %>%
+  ggplot(aes(mmb, harv_rate)) +
   geom_line(lwd = 1) +
   #geom_segment(aes(x = 0, y = 0, xend = 0.5, yend= 0), lwd = 1) +
   geom_vline(xintercept = 1, color = "green", lwd = 1, linetype = "dashed") +
@@ -79,9 +80,9 @@ h_strat %>%
                      breaks = seq(0, 0.15, 0.01), 
                      limits = c(0.0, 0.15),
                      expand = c(0,0)) +
-  xlab(bquote(MMB/MMB[AVG])) +
-  ylab("Exploitation rate on MMB") +
-  theme(legend.position = c(0.8, 0.85), #"none" to remove legend
+  xlab(bquote(LMB/LMB[AVG])) +
+  ylab("Harvest rate on LMB") +
+  theme(legend.position = "none", #"none" to remove legend
         legend.title = element_blank()) -> fig1
 
 ggsave(paste0('./figures/', cur_yr,'/rkc_hcrs.png'), fig1,  
@@ -92,7 +93,7 @@ glimpse(regional_biomass)
 
 #Regional biomass figures----
 
-##Determine mean MMB 1979-2019
+##Determine mean MMB 1979-2020
 regional_biomass %>%
   filter(year %in% 1979:2020) %>%
   summarise(mean_mmb = mean(adj_mature)) -> avg_mmb
@@ -271,7 +272,7 @@ regional_biomass %>%
                      limits = c(0, 7000000),
                      expand = c(0,0),
                      labels = scales::comma) +
-  ggtitle("Mature Male Biomass of Southeast red king crab") +
+  ggtitle("Mature and Legal Male Biomass of Southeast red king crab") +
   theme(axis.text.x = element_text(angle = 45, vjust = 0.5),
         legend.position = c(0.8, 0.8)) -> fig2
 
@@ -279,24 +280,73 @@ ggsave(paste0('./figures/', cur_yr,'/rkc_strategies.png'), fig2,
        dpi = 600, width = 12, height = 8)
 
 
+#MMB, LMB and harvest figure
 
+#combine regional biomass and harvest data frames
+
+rkc_fishticket %>%
+  filter(i_registration_area_code == "A",
+         !is.na(pounds)) %>%
+  group_by(year) %>%
+  summarise(total_lbs = sum(pounds),
+            permits = length(unique(cfec_no))) %>%
+  filter(permits >= 3) -> harv_summary
+
+left_join(regional_biomass_summary, 
+          harv_summary, by = "year") -> bio_harv
+
+bio_harv %>%
+  ggplot(aes(year)) +
+  geom_bar(aes(year, total_lbs), 
+           stat = "identity") +
+  geom_line(aes(y = mmb_regional),
+            lwd = 0.75) +
+  geom_line(aes(y = lmb_regional),
+            lwd = 0.75,
+            linetype = "dashed") +
+  geom_point(aes(y = mmb_regional),
+             size = 3) +
+  geom_point(aes(y = lmb_regional),
+             size = 3,
+             shape = "triangle") +
+  ylab("CSA Adjusted Regional Biomass (lbs)") +
+  xlab("Year") +
+  scale_x_continuous(breaks = seq(1978, cur_yr, 2)) +
+  scale_y_continuous(breaks =seq(0, 14000000, 500000),
+                     limits = c(0, 14000000),
+                     expand = c(0,0),
+                     labels = scales::comma) +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5),
+        legend.position = c(0.8, 0.8),
+        legend.title = element_blank()) -> fig3
+
+ggsave(paste0('./figures/', cur_yr,'/rkc_biomass_harvest.png'), fig3,  
+       dpi = 600, width = 12, height = 8)
 
 #Old code-----
 
-##Determine mean LMB 1979-2019
+##Determine mean LMB 1979-2020
 regional_biomass %>%
-  filter(year %in% 1979:2019) %>%
+  filter(year %in% 1979:2020) %>%
   summarise(mean_lmb = mean(adj_legal)) -> avg_lmb
 
 avg_lmb
 
 avg_lmb * 0.5 -> avg_lmb_fifty
 
+avg_lmb_fifty
+
 regional_biomass %>%
-  ggplot(aes(year, adj_legal)) +
-  geom_line(lwd = 1) +
+  ggplot(aes(year)) +
+  geom_line(aes(y = adj_mature)) +
+  geom_line(aes(y = adj_legal), 
+            linetype = "dashed") +
   geom_point(size = 3,
-             aes(shape = status)) +
+             aes(y = adj_mature,
+                 shape = status)) +
+  geom_point(size = 3,
+             aes(y = adj_legal,
+                 shape = status)) +
   geom_hline(yintercept = avg_lmb$mean,
              color = "green",
              lwd = 1,
@@ -306,15 +356,20 @@ regional_biomass %>%
              lwd = 1, 
              linetype = "dashed",
              alpha = 0.5) +
-  ylab("CSA Adjusted LMB (lbs)") +
+  ylab("CSA Adjusted Biomass (lbs)") +
   xlab("Year") +
   scale_x_continuous(breaks = seq(1978, cur_yr, 2)) +
   scale_y_continuous(breaks =seq(0, 10000000, 500000),
                      limits = c(0, 7000000),
                      expand = c(0,0),
                      labels = scales::comma) +
-  ggtitle("Legal Male Biomass (LMB) of Southeast red king crab") +
-  theme(axis.text.x = element_text(angle = 45, vjust = 0.5))
+  ggtitle("Mature and Legal Male Biomass of Southeast red king crab") +
+  labs(fill = "Commercial Fishery Status") +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5),
+        legend.position = c(0.8, 0.8)) -> fig3
+
+ggsave(paste0('./figures/', cur_yr,'/rkc_strategies_lmb.png'), fig3,  
+       dpi = 600, width = 12, height = 8)
 
 
 #Determine % diff of MMB vs LMB
@@ -327,6 +382,13 @@ avg_lmb
 avg_lmb_fifty
 
 
+lmb_non_survey = (avg_lmb_fifty/0.528)-avg_lmb_fifty
+lmb_bkc = avg_lmb_fifty * 0.0106
+avg_lmb_regional = avg_lmb_fifty + lmb_non_survey + lmb_bkc
+max_tac = 0.05 * avg_lmb_regional
+
+
+#Taking survey biomass and applying harvest rate to survey and non-survey areas
 regional_biomass %>%
   mutate(lmb_non_survey = (adj_legal/0.528)-adj_legal,
          lmb_bkc = adj_legal *0.0106,
@@ -346,4 +408,82 @@ left_join(rkc_tac_mature, rkc_tac_lmb, by = c("year", "legal", "mature",
                                               "lmb_regional",
                                               "status")) -> rkc_tac_summary
 
+rkc_tac_lmb %>%
+  filter(year > 2003) %>%
+  select("year", "adj_legal", "lmb_regional", 
+         "harv_rate_lmb", "max_tac_lmb") ->rkc_tac_lmb_summary
+
+write.csv(rkc_tac_lmb_summary,paste0('./output/', cur_yr,'/rkc_tac_lmb_summary.csv'))
+
 write.csv(rkc_tac_summary, paste0('./output/', cur_yr,'/rkc_tac_summary.csv'))
+
+
+#Simplified version for harvest rate is applied to regional biomass (survy and non_survey areas)-----
+##Determine mean regional LMB 1979-2020
+regional_biomass %>%
+  filter(year %in% 1979:2020) %>%
+  mutate(lmb_non_survey = (adj_legal/0.528)-adj_legal,
+         lmb_bkc = adj_legal *0.0106,
+         lmb_regional = adj_legal + lmb_non_survey + lmb_bkc,
+         mmb_non_survey = (adj_mature/0.528)-adj_mature,
+         mmb_bkc = adj_mature *0.0106,
+         mmb_regional = adj_mature + mmb_non_survey + mmb_bkc) -> regional_biomass_summary
+ 
+
+regional_biomass_summary %>%
+  summarise(mean_reg_lmb = mean(lmb_regional)) -> avg_lmb_regional
+
+avg_lmb_regional
+
+avg_lmb_regional * 0.5 -> avg_lmb_regional_fifty
+
+avg_lmb_regional_fifty
+
+#minimum threshold value @ 5% harvest rate
+avg_lmb_regional_fifty * .05
+
+regional_biomass_summary %>%
+  ggplot(aes(year)) +
+  geom_line(aes(y = mmb_regional)) +
+  geom_line(aes(y = lmb_regional), 
+            linetype = "dashed") +
+  geom_point(size = 3,
+             aes(y = mmb_regional,
+                 shape = status)) +
+  geom_point(size = 3,
+             aes(y = lmb_regional,
+                 shape = status)) +
+  geom_hline(yintercept = avg_lmb_regional$mean,
+             color = "green",
+             lwd = 1,
+             alpha = 0.5) +
+  geom_hline(yintercept = avg_lmb_regional$mean * 0.5,
+             color = "orange",
+             lwd = 1, 
+             linetype = "dashed",
+             alpha = 0.5) +
+  ylab("CSA Adjusted Regional Biomass (lbs)") +
+  xlab("Year") +
+  scale_x_continuous(breaks = seq(1978, cur_yr, 2)) +
+  scale_y_continuous(breaks =seq(0, 100000000, 500000),
+                     limits = c(0, 14000000),
+                     expand = c(0,0),
+                     labels = scales::comma) +
+  ggtitle("Mature and Legal Male Biomass of Southeast RKC for Surveyed and Nonsurveyed Areas") +
+  labs(fill = "Commercial Fishery Status") +
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5),
+        legend.position = c(0.8, 0.8)) -> fig5
+
+ggsave(paste0('./figures/', cur_yr,'/rkc_strategies_lmb_regional.png'), fig5,  
+       dpi = 600, width = 12, height = 8)
+
+
+#Apply harvest rate strategy 5%-10% to determine maxTAC based on regional LMB
+regional_biomass_summary %>%
+  mutate(harv_rate_lmb = ifelse(lmb_regional < avg_lmb_regional_fifty$mean, 0,
+                       ifelse(lmb_regional >= avg_lmb_regional_fifty$mean & 
+                                lmb_regional < avg_lmb_regional$mean, 
+                              0.1*(lmb_regional/avg_lmb_regional$mean),
+                              ifelse(lmb_regional >= avg_lmb_regional$mean, 0.1, 999))),
+max_tac_lmb = harv_rate_lmb * lmb_regional) %>%
+  select(year, status, lmb_regional, harv_rate_lmb, max_tac_lmb)-> rkc_tac_lmb_regional
