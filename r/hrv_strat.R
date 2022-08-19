@@ -14,9 +14,12 @@ library(RColorBrewer)
 library(cowplot)
 library(ggridges)
 library(janitor)
+library(treemap)
+library(treemapify)
+library(wesanderson)
 
 # global ---------
-cur_yr = 2021 # most recent year of data
+cur_yr = 2022 # most recent year of data
 fig_path <- paste0('figures/', cur_yr) # folder to hold all figs for a given year
 dir.create(fig_path) # creates YEAR subdirectory inside figures folder
 output_path <- paste0('output/', cur_yr) # output and results
@@ -33,16 +36,14 @@ theme_set(theme_bw(base_size=16,base_family='seriff') +
                   axis.title = element_text(face = "bold")))
 
 #Load Data------
-read.csv("data/survey/biomass_2021.csv") %>%
+read.csv("data/survey/biomass_2022.csv") %>%
   clean_names() -> area_biomass
 
-read.csv("data/survey/regional_biomass_2021.csv") %>%
-  clean_names() %>%
-  rename(year = ome_t) -> regional_biomass
+read.csv("data/survey/regional_biomass_2022.csv") %>%
+  clean_names() -> regional_biomass
 
 read.csv("data/fishery/rkc_fishticket.csv") %>%
-  clean_names() %>%
-  rename(year = i_year) -> rkc_fishticket
+  clean_names() -> rkc_fishticket
 
 
 #Create Harvest Rate Model Example-----
@@ -421,7 +422,6 @@ write.csv(rkc_tac_summary, paste0('./output/', cur_yr,'/rkc_tac_summary.csv'))
 #Simplified version for harvest rate is applied to regional biomass (survy and non_survey areas)-----
 ##Determine mean regional LMB 1979-2020
 regional_biomass %>%
-  filter(year %in% 1979:2020) %>%
   mutate(lmb_non_survey = (adj_legal/0.528)-adj_legal,
          lmb_bkc = adj_legal *0.0106,
          lmb_regional = adj_legal + lmb_non_survey + lmb_bkc,
@@ -431,6 +431,7 @@ regional_biomass %>%
  
 
 regional_biomass_summary %>%
+  filter(year %in% 1979:2021) %>%
   summarise(mean_reg_lmb = mean(lmb_regional)) -> avg_lmb_regional
 
 avg_lmb_regional
@@ -487,3 +488,46 @@ regional_biomass_summary %>%
                               ifelse(lmb_regional >= avg_lmb_regional$mean, 0.1, 999))),
 max_tac_lmb = harv_rate_lmb * lmb_regional) %>%
   select(year, status, lmb_regional, harv_rate_lmb, max_tac_lmb)-> rkc_tac_lmb_regional
+
+#Current year area contribution to regional biomass treemap----
+##note need to add in non-survey areas and color-code based on stock health
+
+stck_hlth <- c("Poor", "Below Average", "Moderate", "Above Average", "Unknown")
+
+regional_biomass_summary %>% 
+  select(year, lmb_non_survey, lmb_bkc) %>%
+  filter(year == cur_yr) -> nonsurvey_areas
+
+#manually add in the values for nonsurvey and BKC areas 
+#manually add in stock health status from assessment results
+area_biomass %>% 
+  filter(year == cur_yr) %>%
+  add_row(year = cur_yr, location = "Non Survey", adj_legal = 623635.6) %>%
+  add_row(year = cur_yr, location = "BKC", adj_legal = 7394.838) %>%
+  mutate(stck_hlth_status = ifelse(location == "Pybus", "Below Average",
+                            ifelse(location == "Gambier", "Moderate",
+                            ifelse(location == "Seymour", "Below Average",
+                            ifelse(location == "Peril", "Below Average",
+                            ifelse(location == "Juneau", "Healthy",
+                            ifelse(location == "LynnSisters", "Moderate",
+                            ifelse(location == "Excursion", "Poor",
+                            ifelse(location == "Non Survey", "Unknown", "Unknown")))))))))-> stck_hlth_summary
+
+#Reorder factor levels
+stck_hlth_summary$stck_hlth_status <- factor(stck_hlth_summary$stck_hlth_status,
+                                             levels = c('Unknown', 'Healthy', 
+                                                        'Above Average',
+                                                        'Moderate', 'Below Average',
+                                                        'Poor'))
+
+stck_hlth_summary %>%
+  ggplot(aes(area = adj_legal, 
+             fill = stck_hlth_status, 
+             label = location)) +
+  geom_treemap() +
+  geom_treemap_text(color = "black",
+                    place = "centre") +
+ scale_fill_manual(values = c("darkorchid1", "dodgerblue1",
+                               "green1", "orange1", "firebrick1")) +
+  #scale_fill_manual(values = wes_palette("Zissou1", n = 5)) +
+  ggtitle("2022 Legal Male Biomass by Area")
